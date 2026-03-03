@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Retirada de Senhas - Clínica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="card-header">
+          <div>
+            <div class="title">Retire sua senha</div>
+            <p class="subtitle">Escolha o tipo de atendimento desejado.</p>
+          </div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Autoatendimento
+          </div>
+        </header>
+
+        <div class="buttons-row">
+          <button id="btn-normal" class="btn-large btn-large-primary">
+            <div>Senha Normal</div>
+            <span class="label">Consultas em geral</span>
+          </button>
+          <button id="btn-preferencial" class="btn-large btn-large-secondary">
+            <div>Senha Preferencial</div>
+            <span class="label">Idosos, gestantes, PCD, etc.</span>
+          </button>
+        </div>
+
+        <div class="status-area">
+          <div class="status-main">
+            <div class="status-label">Sua senha</div>
+            <div id="ticket-code" class="ticket-code">---</div>
+          </div>
+          <div class="status-helper" id="ticket-helper">
+            Toque em um dos botões para gerar sua senha.
+          </div>
+        </div>
+
+        <p class="small-muted">
+          Em caso de dúvidas ou dificuldades, chame uma das recepcionistas da
+          clínica.
+        </p>
+      </section>
+
+      <section id="ticket-print" class="ticket-print" style="display: none">
+        <div class="ticket-print-title">Clínica - Atendimento</div>
+        <div id="ticket-print-code" class="ticket-print-code">---</div>
+        <div id="ticket-print-type" class="ticket-print-type">---</div>
+        <div class="ticket-print-footer">Apresente esta senha na recepção.</div>
+      </section>
+    </main>
+
+    <script src="/kiosk.js"></script>
+  </body>
+</html>
+

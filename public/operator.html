@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Painel da RecepÃ§Ã£o - ClÃ­nica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="card-header">
+          <div>
+            <div class="title">Painel da RecepÃ§Ã£o</div>
+            <p class="subtitle">
+              Veja as senhas em espera, chame pacientes e controle o vÃ­deo do
+              painel.
+            </p>
+          </div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            OperaÃ§Ã£o
+          </div>
+        </header>
+
+        <div class="layout-two-columns">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Senhas em espera</div>
+              <button id="btn-refresh" class="btn-ghost">Atualizar lista</button>
+            </div>
+            <div class="field-row" style="margin-bottom: 10px">
+              <select id="select-desk">
+                <option value="GuichÃª 1">GuichÃª 1</option>
+                <option value="GuichÃª 2">GuichÃª 2</option>
+                <option value="GuichÃª 3">GuichÃª 3</option>
+                <option value="GuichÃª 4">GuichÃª 4</option>
+                <option value="GuichÃª 5">GuichÃª 5</option>
+                <option value="GuichÃª 6">GuichÃª 6</option>
+                <option value="GuichÃª 7">GuichÃª 7</option>
+                <option value="GuichÃª 8">GuichÃª 8</option>
+                <option value="GuichÃª 9">GuichÃª 9</option>
+                <option value="GuichÃª 10">GuichÃª 10</option>
+              </select>
+              <button id="btn-next-ticket" class="btn-small">
+                Chamar prÃ³xima senha
+              </button>
+            </div>
+            <div id="tickets-list" class="ticket-list">
+              <!-- preenchido via JS -->
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">ConfiguraÃ§Ã£o do painel</div>
+              <span class="panel-pill" id="panel-current-ticket">
+                Nenhuma senha chamada
+              </span>
+            </div>
+
+            <div class="video-select-row">
+              <div>
+                <label for="select-video" class="status-label">
+                  VÃ­deo padrÃ£o
+                </label>
+                <select id="select-video">
+                  <option value="">Nenhum vÃ­deo</option>
+                  <option value="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+                    Paisagem relaxante
+                  </option>
+                  <option value="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/forest.mp4">
+                    Natureza / Floresta
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label for="input-custom-video" class="status-label">
+                  Link de vÃ­deo personalizado (MP4)
+                </label>
+                <div class="field-row">
+                  <input
+                    type="text"
+                    id="input-custom-video"
+                    placeholder="https://exemplo.com/video.mp4"
+                  />
+                  <button id="btn-apply-video" class="btn-small">
+                    Usar vÃ­deo
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="status-label">
+                  VÃ­deo local (upload para o servidor)
+                </label>
+                <div class="field-row">
+                  <input
+                    type="file"
+                    id="input-local-video"
+                    accept="video/mp4,video/webm"
+                    style="flex: 2"
+                  />
+                  <button id="btn-upload-video" class="btn-small">
+                    Enviar vÃ­deo local
+                  </button>
+                </div>
+              </div>
+
+              <p class="small-muted">
+                O vÃ­deo escolhido serÃ¡ exibido na tela do painel (output). VocÃª
+                pode usar um link MP4 externo ou fazer upload de um arquivo local
+                (que serÃ¡ salvo no servidor).
+              </p>
+            </div>
+
+            <div style="margin-top: 16px">
+              <div class="panel-header" style="margin-bottom: 8px">
+                <div class="panel-title">PrÃ©-visualizaÃ§Ã£o do vÃ­deo</div>
+              </div>
+              <div class="display-video">
+                <div class="display-empty" id="preview-video-empty">
+                  Nenhum vÃ­deo selecionado. A TV seguirÃ¡ mostrando o vÃ­deo padrÃ£o
+                  atÃ© vocÃª escolher um.
+                </div>
+                <video
+                  id="preview-video"
+                  style="display: none"
+                  muted
+                  loop
+                  playsinline
+                ></video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: 20px">
+          <div class="panel-header">
+            <div class="panel-title">ConfiguraÃ§Ã£o da impressora ESC/POS</div>
+          </div>
+          <div class="video-select-row">
+            <div>
+              <label class="status-label">
+                AtivaÃ§Ã£o e porta
+              </label>
+              <div class="field-row">
+                <label style="display: flex; align-items: center; gap: 6px">
+                  <input type="checkbox" id="printer-enabled" />
+                  Ativar impressÃ£o ESC/POS
+                </label>
+                <input
+                  type="text"
+                  id="printer-port"
+                  placeholder="COM3, COM4, etc."
+                  style="max-width: 200px"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="status-label">
+                Baud rate
+              </label>
+              <div class="field-row">
+                <select id="printer-baud">
+                  <option value="9600">9600</option>
+                  <option value="19200">19200</option>
+                  <option value="38400">38400</option>
+                  <option value="57600">57600</option>
+                  <option value="115200">115200</option>
+                </select>
+                <button id="printer-save" class="btn-small">
+                  Salvar configuraÃ§Ãµes
+                </button>
+              </div>
+            </div>
+
+            <p class="small-muted">
+              Use esta area apenas para testes. A configuracao fica persistida no banco de dados e sincronizada entre os guiches.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/operator.js"></script>
+  </body>
+</html>
+
+
+

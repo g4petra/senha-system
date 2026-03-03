@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Painel de Chamadas - Clínica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header class="card-header">
+          <div>
+            <div class="title">Chamadas da Clínica</div>
+            <p class="subtitle">
+              Senhas chamadas aparecem aqui com voz e vídeo ao lado.
+            </p>
+          </div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Painel público
+          </div>
+        </header>
+
+        <div class="display-layout">
+          <div class="display-ticket">
+            <div>
+              <div class="display-label">Senha atual</div>
+              <div id="display-code" class="display-code">---</div>
+              <div id="display-type" class="display-type">
+                Aguardando chamada
+              </div>
+              <div id="display-desk" class="display-desk"></div>
+            </div>
+            <div class="display-footer">
+              Aguarde a chamada da sua senha neste painel.
+            </div>
+          </div>
+
+          <div class="display-video" id="display-video-container">
+            <div class="display-empty" id="display-video-empty">
+              Nenhum vídeo selecionado. A recepção pode escolher um vídeo pelo
+              painel de operação.
+            </div>
+            <video
+              id="display-video"
+              style="display: none"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </div>
+
+        <div class="history-bar">
+          <div class="history-title">Últimas senhas chamadas</div>
+          <div id="history-list" class="history-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/display.js"></script>
+  </body>
+</html>
+
